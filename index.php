@@ -1,5 +1,5 @@
  <?php
- 	
+ // Aina
  ?>
  <!DOCTYPE html>
 <html>
@@ -15,6 +15,7 @@
 	
 	<div class="members">
 		<p><a href="inscription.php">Inscription</a></p>
+		<p><a href="connexion_page.php">Connexion</a></p>
 	</div>
 	
 	<?php
