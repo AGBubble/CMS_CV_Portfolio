@@ -2,7 +2,11 @@
  // Aina
  // Shazad
  // Fred
+<<<<<<< HEAD
  //florian
+=======
+ // Dylan
+>>>>>>> cbcdd3cd775f1ba662b6eb81829ca4b15fbede6e
  ?>
  <!DOCTYPE html>
 <html>
