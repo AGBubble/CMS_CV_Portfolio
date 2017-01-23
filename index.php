@@ -2,6 +2,7 @@
  // Aina
  // Shazad
  // Fred
+ //florian
  ?>
  <!DOCTYPE html>
 <html>
@@ -14,14 +15,14 @@
 </head>
 
 <body>
-	
+
 	<div class="members">
 		<p><a href="inscription.php">Inscription</a></p>
 		<p><a href="connexion_page.php">Connexion</a></p>
 	</div>
-	
+
 	<?php
-	
+
 	try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=monsite;charset=utf8', 'root', 'root');
@@ -34,28 +35,28 @@
 
 
 	// Affichage de chaque message (toutes les données sont protégées par htmlspecialchars)
-	
+
 	while ($donnees = $reponse->fetch())
 
 	{
 
-	    echo 
+	    echo
 			'<div class="post"><p><strong>' . htmlspecialchars($donnees['titre']) . 			'</strong> : ' . '</p>'
-				
-			. '<p>' . htmlspecialchars($donnees['contenu']) ."</p>" 
-			
-			. '<p>' .$donnees['date_creation'] . '</p>' 			
-			
-			. '<p>' . '<a href="comment.php?billets=' . $donnees['id'] 
-			
+
+			. '<p>' . htmlspecialchars($donnees['contenu']) ."</p>"
+
+			. '<p>' .$donnees['date_creation'] . '</p>'
+
+			. '<p>' . '<a href="comment.php?billets=' . $donnees['id']
+
 			. '"' . '>' .'Commentaires' . '</a>' . '</p></div>';
- 
+
 	}
 
 
 	$reponse->closeCursor();
-	
-	
+
+
 	?>
 	<!-- Nouveau billet -->
 	<div class="new_post">
@@ -66,7 +67,7 @@
 	<input type="submit" value="Envoyer">
 	</form>
 	</div>
-	
+
 </body>
 
-</html> 
+</html>
