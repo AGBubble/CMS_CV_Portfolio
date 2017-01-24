@@ -15,17 +15,17 @@ if(!empty($pseudo) && !empty($mdp))
 			die('Erreur : '.$e->getMessage());
 		}
     //prepare la commande
-		$req=$bdd->prepare('SELECT * FROM membres WHERE pseudo=?');
+		$req=$bdd->prepare('SELECT * FROM membres WHERE pseudo=?'); //je cherche la ligne qui correspond au pseudo
 
-    	$req->execute([$pseudo]);
+    	$req->execute([$pseudo]); // correspond au pseudo qu'on a mis dans le formulaire
 		
-		$res = $req->fetch(PDO::FETCH_ASSOC);
+		$res = $req->fetch(PDO::FETCH_ASSOC); // on met le tout dans un tableau
 		
-		if($res)
+		if($res) // si on a un resultat 
 		{
-			$hash = $res['mot_de_passe'];
+			$hash = $res['mot_de_passe']; //je cherche le MDP dans la table qui correspond à un hash
 		
-			if (password_verify($mdp, $hash))
+			if (password_verify($mdp, $hash)) // password verify return TRUE quand le MDP et le Hash correspondent
 			{
 				header('Location : index.php');
 			}
