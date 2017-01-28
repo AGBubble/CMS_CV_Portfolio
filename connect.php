@@ -1,4 +1,5 @@
 <?php
+session_start();
 $pseudo=htmlspecialchars($_POST['pseudo']);
 $mdp=htmlspecialchars($_POST['mdp']);
 $options = ['cost' => 10,];
@@ -27,20 +28,22 @@ if(!empty($pseudo) && !empty($mdp))
 		
 			if (password_verify($mdp, $hash)) // password verify return TRUE quand le MDP et le Hash correspondent
 			{
-				header('Location : index.php');
+				header('Location: index.php');
+				$_SESSION['user'] = $pseudo;
+				
 			}
 			else
 			{
-				echo "Erreur d'identification";
+				$errors['wrong'] = "Erreur d'identification" . '<br />' . '<a href=index.php>' . 'Retour' . '</a>';
 			}
 		}
   }
   
 else
 {
-	echo "Au moins un des deux champs est vide";
+	$errors['empty'] = "Au moins un des deux champs est vide" . '<br />' . '<a href=index.php>' . 'Retour' . '</a>';
 }
-if ($errors)
+if (isset($errors))
   {
     foreach($errors as $num_errors)
     {

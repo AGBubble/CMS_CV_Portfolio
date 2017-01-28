@@ -27,26 +27,39 @@ $errors = array();
 				else 
 					{
 						$bdd = new PDO('mysql:host=localhost;dbname=monsite;charset=utf8', 'root', 'root');
-	
-					/* Insertion des données dans la table commentaires */
-					$req = $bdd->prepare('INSERT INTO membres SET pseudo = ?, email = ?, mot_de_passe = ?');
+						
+						$req = $bdd->prepare('SELECT * FROM membres WHERE pseudo=?');
+						
+						$req->execute([$pseudo]);
+						
+						$res = $req->fetch(PDO::FETCH_ASSOC);
+						
+						if ($res)
+						{
+							$errors['pseudo'] = "Le pseudo est deja utilise" . '<br / ><a href="inscription.php">Retour</a>';
+						}
+						else
+						{
+							/* Insertion des données dans la table commentaires */
+							$req = $bdd->prepare('INSERT INTO membres SET pseudo = ?, email = ?, mot_de_passe = ?');
 
-					$req->execute(array(
+							$req->execute(array(
 		
-						$pseudo,
+												$pseudo,
 
-						$mail,
+												$mail,
 		
-						$password,
+												$password,
 
-				    ));	
-						header('Location: index.php');
+				    		));	
+							header('Location: index.php');
+						}
+				
 					}
-			}
+				}
 			else
 			{
-				echo "Un des champs est vide";
-				echo '<br /><a href="inscription.php">Retour</a>';
+				$errors['empty'] = "Un des champs est vide" . '<br / ><a href="inscription.php">Retour</a>';
 				
 			}
 			if ($errors)

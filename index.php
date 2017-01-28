@@ -1,7 +1,13 @@
- <?php
- // Aina
- // Shazad
- // Fred
+<?php
+session_start();
+if(isset($_SESSION['user']))
+{
+	echo "Bonjour " . $_SESSION['user'];
+}
+else
+{
+	echo "Connectez vous s'il vous plait";
+}
  ?>
  <!DOCTYPE html>
 <html>
